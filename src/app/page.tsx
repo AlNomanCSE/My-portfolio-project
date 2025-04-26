@@ -1,11 +1,29 @@
+import { Hero } from "@/components/hero";
+import Skills from "@/components/skills/Skills";
+import CoreProjects from "@/components/projects/CoreProjects";
+import PracticeProjects from "@/components/projects/PracticeProjects";
+import Contact from "@/components/contact/Contact";
+import Experience from "@/components/experience/Experience";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-      
-      </main>
-      
+    <div className="min-h-screen">
+      <section id="home">
+        <Hero />
+      </section>
+      <section id="skills">
+        <Skills />
+      </section>
+      <section id="experience">
+        <Experience />
+      </section>
+      <section id="projects">
+        <CoreProjects />
+        <PracticeProjects />
+      </section>
+      <section id="contact">
+        <Contact />
+      </section>
     </div>
   );
 }
