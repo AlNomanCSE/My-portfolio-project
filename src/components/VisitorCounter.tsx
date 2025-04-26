@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { FaEye } from 'react-icons/fa';
 
 export default function VisitorCounter() {
   const [count, setCount] = useState<number | null>(null);
@@ -33,7 +34,7 @@ export default function VisitorCounter() {
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-          className="w-3 h-3 border-2 border-gray-400/70 border-t-transparent rounded-full mr-2"
+          className="w-3 h-3 border-2 border-gray-400/70 border-t-transparent rounded-full mr-1"
         />
         Loading...
       </div>
@@ -42,21 +43,22 @@ export default function VisitorCounter() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="inline-flex items-center px-3 py-1.5 rounded-full bg-gray-900/30 backdrop-blur-sm border border-gray-700/20 shadow-sm hover:bg-gray-900/40 transition-colors duration-200"
+      className="inline-flex items-center px-3 py-1 rounded-full bg-gradient-to-r from-gray-900/40 to-gray-800/40 backdrop-blur-sm border border-gray-700/20 shadow-md"
     >
       <div className="flex items-center space-x-1.5">
+        <FaEye className="text-blue-400/80 text-xs" />
         <motion.span 
-          className="font-medium text-transparent bg-clip-text bg-gradient-to-r from-blue-400/80 to-purple-400/80 text-xs"
+          className="font-medium text-transparent bg-clip-text bg-gradient-to-r from-blue-400/90 to-purple-400/90 text-xs"
           initial={{ scale: 0.8 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.3 }}
         >
           {count?.toLocaleString()}
         </motion.span>
-        <span className="text-gray-400/70 text-xs">visitors</span>
+        <span className="text-gray-300/70 text-xs">visitors</span>
       </div>
     </motion.div>
   );

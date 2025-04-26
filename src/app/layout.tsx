@@ -42,8 +42,8 @@ export default function RootLayout({
         </div>
 
         <div className="relative z-10 flex flex-col min-h-screen">
-          {/* Visitor Counter in top-right corner */}
-          <div className="fixed top-4 right-4 z-50">
+          {/* Visitor Counter at the top of the page */}
+          <div className="absolute top-4 right-4 z-50">
             <VisitorCounter />
           </div>
           

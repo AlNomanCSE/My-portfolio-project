@@ -28,7 +28,7 @@ const Contact = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="max-w-3xl mx-auto mt-12 bg-gray-900/80 backdrop-blur-sm rounded-xl border border-gray-800/50 p-8 shadow-xl"
+          className="max-w-3xl mx-auto mt-12 bg-gray-900/80 backdrop-blur-sm rounded-xl border border-gray-800/50 p-6 sm:p-8 shadow-xl"
         >
           <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
             Get In Touch
@@ -38,39 +38,39 @@ const Contact = () => {
             The best way to reach me is directly through email or WhatsApp. I&apos;ll get back to you as soon as possible!
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8">
             <motion.a
               href="mailto:abdullahalnomancse@gmail.com"
-              className="flex items-center p-4 bg-gray-800/50 border border-gray-700 rounded-lg hover:bg-gray-800/70 transition-all duration-300 group"
+              className="flex items-center p-3 sm:p-4 bg-gray-800/50 border border-gray-700 rounded-lg hover:bg-gray-800/70 transition-all duration-300 group"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center mr-4 group-hover:bg-blue-500/30 transition-colors">
-                <FaEnvelope className="text-blue-400 text-xl" />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-500/20 flex items-center justify-center mr-3 sm:mr-4 group-hover:bg-blue-500/30 transition-colors">
+                <FaEnvelope className="text-blue-400 text-lg sm:text-xl" />
               </div>
-              <div className="flex-1">
-                <h4 className="font-medium text-white">Email Me</h4>
-                <p className="text-gray-400 text-sm">abdullahalnomancse@gmail.com</p>
+              <div className="flex-1 min-w-0">
+                <h4 className="font-medium text-white text-sm sm:text-base">Email Me</h4>
+                <p className="text-gray-400 text-xs sm:text-sm truncate">abdullahalnomancse@gmail.com</p>
               </div>
-              <FaArrowRight className="text-blue-400 opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-2 transition-all" />
+              <FaArrowRight className="text-blue-400 opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-2 transition-all ml-2 sm:ml-3" />
             </motion.a>
             
             <motion.a
               href="https://wa.me/8801883217001"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center p-4 bg-gray-800/50 border border-gray-700 rounded-lg hover:bg-gray-800/70 transition-all duration-300 group"
+              className="flex items-center p-3 sm:p-4 bg-gray-800/50 border border-gray-700 rounded-lg hover:bg-gray-800/70 transition-all duration-300 group"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center mr-4 group-hover:bg-green-500/30 transition-colors">
-                <FaWhatsapp className="text-green-400 text-xl" />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-green-500/20 flex items-center justify-center mr-3 sm:mr-4 group-hover:bg-green-500/30 transition-colors">
+                <FaWhatsapp className="text-green-400 text-lg sm:text-xl" />
               </div>
-              <div className="flex-1">
-                <h4 className="font-medium text-white">WhatsApp Me</h4>
-                <p className="text-gray-400 text-sm">+880 1883-217001</p>
+              <div className="flex-1 min-w-0">
+                <h4 className="font-medium text-white text-sm sm:text-base">WhatsApp Me</h4>
+                <p className="text-gray-400 text-xs sm:text-sm truncate">+880 1883-217001</p>
               </div>
-              <FaArrowRight className="text-green-400 opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-2 transition-all" />
+              <FaArrowRight className="text-green-400 opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-2 transition-all ml-2 sm:ml-3" />
             </motion.a>
           </div>
           
