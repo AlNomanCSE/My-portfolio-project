@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "My Portfolio",
-  description: "A modern portfolio website",
+  title: "Abdullah Al Noman | Full Stack Developer",
+  description: "Portfolio of Abdullah Al Noman, a Full Stack Developer specializing in MERN stack, React Native, and Spring Boot applications. View my projects, skills, and experience.",
 };
 
 export default function RootLayout({

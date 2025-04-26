@@ -14,7 +14,7 @@ const experiences = [
   {
     company: "OutNet",
     position: "Web Developer (Intern)",
-    period: "March 1, 2025 – Present",
+    period: "March 2024 – Present",
     type: "Remote",
     description: "Developing and maintaining scalable web and mobile applications using MERN stack, React Native, and frameworks like Next.js or Remix.",
     responsibilities: [
@@ -28,7 +28,7 @@ const experiences = [
   {
     company: "BarracK LifeStyle",
     position: "Fullstack Developer (Intern)",
-    period: "March – June 2024",
+    period: "January 2024 – March 2024",
     type: "Remote",
     description: "Design and maintenance of robust backend APIs for seamless data management.",
     responsibilities: [
