@@ -171,6 +171,8 @@ export function Hero() {
                             className="w-full h-full object-cover"
                             priority
                         />
+                        {/* Bottom blur effect */}
+                        <div className="absolute bottom-0 left-0 right-0 h-1/9 bg-gradient-to-t from-gray-900/80 to-transparent backdrop-blur-sm"></div>
                     </div>
                     
                     {/* Decorative elements */}
