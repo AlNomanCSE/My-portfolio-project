@@ -3,7 +3,7 @@
 import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter, FaFileDownload } from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
 
 export function Hero() {
@@ -110,6 +110,16 @@ export function Hero() {
                                 >
                                     View My Work
                                 </motion.a>
+                                <motion.a 
+                                    href="/Abdullah_Al_Noman_CV_2025.pdf" 
+                                    download
+                                    className="px-6 py-3 bg-gradient-to-r from-green-600 to-teal-600 text-white rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center gap-2"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                >
+                                    <FaFileDownload />
+                                    <span>Download CV</span>
+                                </motion.a>
                             </motion.div>
                             
                             <motion.div
@@ -123,7 +133,7 @@ export function Hero() {
                                     target="_blank" 
                                     rel="noopener noreferrer"
                                     whileHover={{ scale: 1.1, y: -5 }}
-                                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gray-800/50 flex items-center justify-center text-gray-300 hover:text-white hover:bg-gray-700/50 transition-all duration-300 border border-gray-700/50"
+                                    className="text-gray-300 hover:text-white transition-all duration-300"
                                 >
                                     <FaGithub className="text-xl sm:text-2xl" />
                                 </motion.a>
@@ -132,7 +142,7 @@ export function Hero() {
                                     target="_blank" 
                                     rel="noopener noreferrer"
                                     whileHover={{ scale: 1.1, y: -5 }}
-                                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gray-800/50 flex items-center justify-center text-gray-300 hover:text-white hover:bg-gray-700/50 transition-all duration-300 border border-gray-700/50"
+                                    className="text-gray-300 hover:text-white transition-all duration-300"
                                 >
                                     <FaLinkedin className="text-xl sm:text-2xl" />
                                 </motion.a>
@@ -141,7 +151,7 @@ export function Hero() {
                                     target="_blank" 
                                     rel="noopener noreferrer"
                                     whileHover={{ scale: 1.1, y: -5 }}
-                                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gray-800/50 flex items-center justify-center text-gray-300 hover:text-white hover:bg-gray-700/50 transition-all duration-300 border border-gray-700/50"
+                                    className="text-gray-300 hover:text-white transition-all duration-300"
                                 >
                                     <FaTwitter className="text-xl sm:text-2xl" />
                                 </motion.a>
@@ -150,7 +160,7 @@ export function Hero() {
                                     target="_blank" 
                                     rel="noopener noreferrer"
                                     whileHover={{ scale: 1.1, y: -5 }}
-                                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gray-800/50 flex items-center justify-center text-gray-300 hover:text-white hover:bg-gray-700/50 transition-all duration-300 border border-gray-700/50"
+                                    className="text-gray-300 hover:text-white transition-all duration-300"
                                 >
                                     <SiLeetcode className="text-xl sm:text-2xl" />
                                 </motion.a>
