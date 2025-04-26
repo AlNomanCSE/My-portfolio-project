@@ -36,15 +36,9 @@ export function Hero() {
             
             <div className="flex flex-col lg:flex-row items-center justify-center w-full max-w-7xl mx-auto gap-8 sm:gap-12 lg:gap-16 py-8 sm:py-12 lg:py-16 relative z-10">
                 {/* Text Content - Redesigned to match image style */}
-                <div className="relative w-full lg:w-auto">
-                    {/* Outer frame */}
-                    <div className="absolute inset-0 border-2 border-blue-500/30 rounded-[2rem]"></div>
-                    
-                    {/* Inner frame */}
-                    <div className="absolute inset-4 border-2 border-purple-500/30 rounded-[1.5rem]"></div>
-                    
+                <div className="relative w-full lg:w-auto mt-12 sm:mt-16 lg:mt-0">
                     {/* Content container */}
-                    <div className="relative backdrop-blur-sm rounded-[1.5rem] p-6 sm:p-8 border border-gray-800/50 shadow-xl hover:shadow-2xl transition-all duration-300 m-4">
+                    <div className="relative backdrop-blur-sm rounded-[1.5rem] p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300">
                         {/* Decorative elements */}
                         <div className="absolute top-0 left-0 w-full h-full">
                             {/* Animated circles */}
@@ -77,12 +71,6 @@ export function Hero() {
                                     delay: 1
                                 }}
                             ></motion.div>
-                            
-                            {/* Decorative lines */}
-                            <div className="absolute top-1/2 left-0 w-1/2 h-0.5 bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
-                            <div className="absolute top-1/2 right-0 w-1/2 h-0.5 bg-gradient-to-l from-transparent via-purple-500/50 to-transparent"></div>
-                            <div className="absolute left-1/2 top-0 w-0.5 h-1/2 bg-gradient-to-b from-transparent via-blue-500/50 to-transparent"></div>
-                            <div className="absolute left-1/2 bottom-0 w-0.5 h-1/2 bg-gradient-to-t from-transparent via-purple-500/50 to-transparent"></div>
                         </div>
                         
                         {/* Content */}
@@ -173,14 +161,8 @@ export function Hero() {
                 
                 {/* Profile Image - Minimalist Design */}
                 <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96">
-                    {/* Outer frame */}
-                    <div className="absolute inset-0 border-2 border-blue-500/30 rounded-full"></div>
-                    
-                    {/* Inner frame */}
-                    <div className="absolute inset-4 border-2 border-purple-500/30 rounded-full"></div>
-                    
                     {/* Image container */}
-                    <div className="absolute inset-8 rounded-full overflow-hidden">
+                    <div className="absolute inset-0 rounded-full overflow-hidden">
                         <Image
                             src="/profileimage.png"
                             alt="Noman's Profile"
@@ -241,12 +223,6 @@ export function Hero() {
                                 Full Stack Developer
                             </span>
                         </motion.div>
-                        
-                        {/* Decorative lines */}
-                        <div className="absolute top-1/2 left-0 w-1/2 h-0.5 bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
-                        <div className="absolute top-1/2 right-0 w-1/2 h-0.5 bg-gradient-to-l from-transparent via-purple-500/50 to-transparent"></div>
-                        <div className="absolute left-1/2 top-0 w-0.5 h-1/2 bg-gradient-to-b from-transparent via-blue-500/50 to-transparent"></div>
-                        <div className="absolute left-1/2 bottom-0 w-0.5 h-1/2 bg-gradient-to-t from-transparent via-purple-500/50 to-transparent"></div>
                     </div>
                 </div>
             </div>
