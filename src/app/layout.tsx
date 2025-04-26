@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import VisitorCounter from '@/components/VisitorCounter';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,6 +42,11 @@ export default function RootLayout({
         </div>
 
         <div className="relative z-10 flex flex-col min-h-screen">
+          {/* Visitor Counter in top-right corner */}
+          <div className="fixed top-4 right-4 z-50">
+            <VisitorCounter />
+          </div>
+          
           <Header />
           <main className="flex-1">
             {children}
