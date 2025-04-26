@@ -34,3 +34,24 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Visitor Tracking
+
+This portfolio website includes a visitor counter that tracks the number of visitors to the site. The visitor count is stored in a JSON file and is updated whenever someone visits the site.
+
+### How It Works
+
+1. The visitor counter is implemented as a React component (`VisitorCounter.tsx`) that makes API calls to track visitors.
+2. The API endpoint (`/api/visitors`) handles incrementing and retrieving the visitor count.
+3. The visitor data is stored in a JSON file (`data/visitors.json`).
+4. Before pushing to Git, a pre-push hook runs a script (`scripts/scrape-visitors.js`) to fetch the latest visitor count from the live website and update the local data.
+
+### Manual Update
+
+If you need to manually update the visitor count, you can run:
+
+```bash
+node scripts/scrape-visitors.js
+```
+
+This will fetch the latest visitor count from the live website and update the local data file.
