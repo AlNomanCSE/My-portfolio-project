@@ -4,12 +4,16 @@ import CoreProjects from "@/components/projects/CoreProjects";
 import PracticeProjects from "@/components/projects/PracticeProjects";
 import Contact from "@/components/contact/Contact";
 import Experience from "@/components/experience/Experience";
+import GitHubActivity from "@/components/about/About";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <section id="home">
+      <section id="about">
         <Hero />
+      </section>
+      <section id="github-activity">
+        <GitHubActivity />
       </section>
       <section id="skills">
         <Skills />

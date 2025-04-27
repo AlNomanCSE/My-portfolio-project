@@ -3,9 +3,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { FaUser, FaCode, FaRocket } from "react-icons/fa";
+import { FaGithub, FaCode, FaChartLine } from "react-icons/fa";
 
-const About = () => {
+const GitHubActivity = () => {
   return (
     <section className="py-24 relative overflow-hidden">
       {/* Animated background */}
@@ -20,80 +20,102 @@ const About = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         <SectionHeading 
-          title="About Me"
-          subtitle="Get to know more about who I am and what I do"
+          title="GitHub Activity"
+          subtitle="My coding activity and contributions"
         />
         
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="max-w-4xl mx-auto mt-12 bg-gray-900/80 backdrop-blur-sm rounded-xl border border-gray-800/50 p-8 shadow-xl"
+          className="max-w-6xl mx-auto mt-12"
         >
-          <div className="flex flex-col md:flex-row gap-8">
-            {/* Profile image */}
-            <div className="md:w-1/3 flex justify-center">
-              <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-blue-500/30 shadow-lg">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 mix-blend-overlay"></div>
-                <img 
-                  src="/profile.jpg" 
-                  alt="Abdullah Al Noman" 
-                  className="w-full h-full object-cover"
-                />
+          {/* Terminal-style container */}
+          <div className="bg-gray-900 rounded-lg overflow-hidden shadow-2xl border border-gray-700">
+            {/* Terminal header */}
+            <div className="bg-gray-800 px-6 py-3 flex items-center">
+              <div className="flex space-x-3">
+                <div className="w-4 h-4 rounded-full bg-red-500"></div>
+                <div className="w-4 h-4 rounded-full bg-yellow-500"></div>
+                <div className="w-4 h-4 rounded-full bg-green-500"></div>
               </div>
+              <div className="flex-1 text-center text-gray-300 text-base font-mono">github-stats.sh</div>
+              <div className="w-12"></div>
             </div>
             
-            {/* Bio content */}
-            <div className="md:w-2/3">
-              <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                Abdullah Al Noman
-              </h3>
-              <p className="text-gray-300 mb-6">
-                I&apos;m a software developer passionate about building innovative solutions using a diverse tech stack. I aim to secure challenging positions where I can leverage my technical expertise and problem-solving skills to contribute to impactful projects while fostering personal and professional growth.
-              </p>
+            {/* Terminal content */}
+            <div className="p-8 font-mono text-base">
+              {/* Command line */}
+              <div className="flex items-center mb-8">
+                <span className="text-green-400 mr-3 text-lg">$</span>
+                <span className="text-blue-400 text-lg">cat</span>
+                <span className="text-gray-300 ml-3 text-lg">github-stats.json</span>
+              </div>
               
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <motion.div 
-                  className="p-4 bg-gray-800/50 rounded-lg border border-gray-700/50"
-                  whileHover={{ scale: 1.03, boxShadow: "0 0 15px rgba(59,130,246,0.3)" }}
+              {/* Stats display */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {/* GitHub Stats */}
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.2 }}
+                  className="bg-gray-800/50 rounded-lg p-6 border border-gray-700/50"
                 >
-                  <div className="flex items-center mb-2">
-                    <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center mr-2">
-                      <FaUser className="text-blue-400" />
-                    </div>
-                    <h4 className="font-medium text-white">Full Stack Developer</h4>
+                  <div className="flex items-center mb-4">
+                    <FaGithub className="text-blue-400 mr-3 text-xl" />
+                    <span className="text-blue-400 font-bold text-lg">profile_stats</span>
                   </div>
-                  <p className="text-sm text-gray-400">Specializing in MERN stack and Spring Boot applications</p>
+                  <div className="flex justify-center">
+                    <img 
+                      src="https://github-readme-stats.vercel.app/api?username=AlNomanCSE&show_icons=true&theme=dark&hide_border=true&count_private=true&bg_color=0d1117&title_color=58a6ff&text_color=8b949e&icon_color=38d353" 
+                      alt="GitHub Stats" 
+                      className="w-full rounded-lg"
+                    />
+                  </div>
                 </motion.div>
                 
-                <motion.div 
-                  className="p-4 bg-gray-800/50 rounded-lg border border-gray-700/50"
-                  whileHover={{ scale: 1.03, boxShadow: "0 0 15px rgba(59,130,246,0.3)" }}
+                {/* Programming Languages */}
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.2 }}
+                  className="bg-gray-800/50 rounded-lg p-6 border border-gray-700/50"
                 >
-                  <div className="flex items-center mb-2">
-                    <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center mr-2">
-                      <FaCode className="text-purple-400" />
-                    </div>
-                    <h4 className="font-medium text-white">Problem Solver</h4>
+                  <div className="flex items-center mb-4">
+                    <FaCode className="text-purple-400 mr-3 text-xl" />
+                    <span className="text-purple-400 font-bold text-lg">languages</span>
                   </div>
-                  <p className="text-sm text-gray-400">Strong in algorithms and data structures</p>
+                  <div className="flex justify-center">
+                    <img 
+                      src="https://github-readme-stats.vercel.app/api/top-langs/?username=AlNomanCSE&layout=compact&theme=dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&text_color=8b949e" 
+                      alt="Top Languages" 
+                      className="w-full rounded-lg"
+                    />
+                  </div>
                 </motion.div>
                 
-                <motion.div 
-                  className="p-4 bg-gray-800/50 rounded-lg border border-gray-700/50"
-                  whileHover={{ scale: 1.03, boxShadow: "0 0 15px rgba(59,130,246,0.3)" }}
+                {/* Contribution Streak */}
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.2 }}
+                  className="bg-gray-800/50 rounded-lg p-6 border border-gray-700/50"
                 >
-                  <div className="flex items-center mb-2">
-                    <div className="w-8 h-8 rounded-full bg-pink-500/20 flex items-center justify-center mr-2">
-                      <FaRocket className="text-pink-400" />
-                    </div>
-                    <h4 className="font-medium text-white">Continuous Learner</h4>
+                  <div className="flex items-center mb-4">
+                    <FaChartLine className="text-green-400 mr-3 text-xl" />
+                    <span className="text-green-400 font-bold text-lg">streak</span>
                   </div>
-                  <p className="text-sm text-gray-400">Always exploring new technologies and frameworks</p>
+                  <div className="flex justify-center">
+                    <img 
+                      src="https://github-readme-streak-stats.herokuapp.com/?user=AlNomanCSE&theme=dark&hide_border=true&background=0d1117&ring=38d353&fire=58a6ff&currStreakLabel=58a6ff" 
+                      alt="Contribution Streak" 
+                      className="w-full rounded-lg"
+                    />
+                  </div>
                 </motion.div>
+              </div>
+              
+              {/* Command line footer */}
+              <div className="flex items-center mt-8">
+                <span className="text-green-400 mr-3 text-lg">$</span>
+                <span className="text-gray-300 text-lg">exit</span>
               </div>
             </div>
           </div>
@@ -103,4 +125,4 @@ const About = () => {
   );
 };
 
-export default About; 
+export default GitHubActivity; 

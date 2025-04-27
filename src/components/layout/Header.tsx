@@ -9,19 +9,53 @@ import {
   IconX,
 } from "@tabler/icons-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('about');
 
   // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+      
+      // Update active section based on scroll position
+      const sections = ['about', 'skills', 'experience', 'projects', 'contact'];
+      const currentSection = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          const offset = 200; // Increased offset for better detection
+          const isInView = rect.top <= offset && rect.bottom >= offset;
+          return isInView;
+        }
+        return false;
+      });
+      
+      if (currentSection) {
+        setActiveSection(currentSection);
+      }
     };
     
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Initial check for active section
+    handleScroll();
+    
+    // Add throttling to prevent too many updates
+    let ticking = false;
+    const scrollHandler = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    
+    window.addEventListener('scroll', scrollHandler);
+    return () => window.removeEventListener('scroll', scrollHandler);
   }, []);
 
   // Handle smooth scrolling
@@ -31,15 +65,41 @@ export function Header() {
     
     const element = document.getElementById(id);
     if (element) {
-      const headerOffset = 80; // Adjust based on your header height
+      const headerOffset = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      
+      // Update active section immediately
+      setActiveSection(id);
       
       window.scrollTo({
         top: offsetPosition,
         behavior: "smooth"
       });
     }
+  };
+
+  const handleMobileNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    
+    // Add a small delay to allow the mobile menu to close smoothly
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (element) {
+        const headerOffset = 80;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        
+        // Update active section immediately
+        setActiveSection(id);
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      }
+    }, 300);
   };
 
   const links = [
@@ -61,7 +121,7 @@ export function Header() {
   ];
 
   const navLinks = [
-    { title: "Home", href: "#home" },
+    { title: "About Me", href: "#about" },
     { title: "Skills", href: "#skills" },
     { title: "Experience", href: "#experience" },
     { title: "Projects", href: "#projects" },
@@ -72,7 +132,7 @@ export function Header() {
     <motion.header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled 
-          ? "bg-gray-900/80 backdrop-blur-md shadow-lg" 
+          ? "bg-gray-900/80 backdrop-blur-md shadow-lg border-b border-gray-800/50" 
           : "bg-transparent"
       }`}
       initial={{ y: -100 }}
@@ -87,38 +147,62 @@ export function Header() {
           whileTap={{ scale: 0.95 }}
         >
           <Link href="/" className="flex items-center">
-            {/* <div className="relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur opacity-70"></div>
-              <div className="relative bg-gray-900 rounded-full p-2">
-                <span className="text-2xl">👨‍💻</span>
-              </div>
-            </div> */}
+            <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-blue-500/30 shadow-lg shadow-blue-500/10">
+              <Image
+                src="/LogoPic.jpg"
+                alt="Logo"
+                width={40}
+                height={40}
+                className="w-full h-full object-cover"
+                style={{ objectPosition: 'top' }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 mix-blend-overlay"></div>
+            </div>
             <div className="ml-3 flex flex-col">
-              <span className="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
-                Abdullah Al Noman
-              </span>
-              <span className="text-xs text-gray-400 tracking-wider uppercase">Full Stack Developer</span>
+              <div className="relative">
+                <span className="text-xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
+                  Abdullah Al Noman
+                </span>
+                <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full"></div>
+              </div>
+              <div className="mt-1">
+                <span className="text-xs font-medium text-gray-400 tracking-wider uppercase">Full Stack Developer</span>
+              </div>
             </div>
           </Link>
         </motion.div>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          {navLinks.map((link, index) => (
-            <motion.a
-              key={link.title}
-              href={link.href}
-              onClick={(e) => scrollToSection(e, link.href.substring(1))}
-              className="text-gray-300 hover:text-white transition-colors relative group font-medium tracking-wide"
-              whileHover={{ y: -2 }}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: index * 0.1 }}
-            >
-              {link.title}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-full transition-all duration-300"></span>
-            </motion.a>
-          ))}
+          {navLinks.map((link, index) => {
+            const isActive = activeSection === link.href.substring(1);
+            return (
+              <motion.a
+                key={link.title}
+                href={link.href}
+                onClick={(e) => scrollToSection(e, link.href.substring(1))}
+                className={`relative group font-medium tracking-wide transition-colors ${
+                  isActive ? 'text-white' : 'text-gray-300 hover:text-white'
+                }`}
+                whileHover={{ y: -2 }}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+              >
+                {link.title}
+                {!isActive && (
+                  <>
+                    <span 
+                      className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 w-0 group-hover:w-full"
+                    />
+                    <span 
+                      className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300 delay-75 w-0 group-hover:w-full"
+                    />
+                  </>
+                )}
+              </motion.a>
+            );
+          })}
         </nav>
 
         {/* Social Links */}
@@ -146,7 +230,7 @@ export function Header() {
 
         {/* Mobile Menu Button */}
         <motion.button
-          className="md:hidden p-2 rounded-lg bg-gray-800/50 text-gray-300 hover:text-white hover:bg-gray-700/50 transition-all duration-300"
+          className="md:hidden p-2 rounded-lg bg-gray-800/50 text-gray-300 hover:text-white hover:bg-gray-700/50 transition-all duration-300 border border-gray-700/50"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -159,26 +243,38 @@ export function Header() {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            className="md:hidden bg-gray-900/95 backdrop-blur-md border-t border-gray-800"
+            className="md:hidden bg-gray-900/95 backdrop-blur-md border-t border-gray-800 fixed top-20 left-0 right-0 z-50"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
           >
             <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-              {navLinks.map((link, index) => (
-                <motion.a
-                  key={link.title}
-                  href={link.href}
-                  onClick={(e) => scrollToSection(e, link.href.substring(1))}
-                  className="text-gray-300 hover:text-white py-2 transition-colors font-medium tracking-wide"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                >
-                  {link.title}
-                </motion.a>
-              ))}
+              {navLinks.map((link, index) => {
+                const isActive = activeSection === link.href.substring(1);
+                return (
+                  <motion.a
+                    key={link.title}
+                    href={link.href}
+                    onClick={(e) => handleMobileNavClick(e, link.href.substring(1))}
+                    className={`py-2 transition-colors font-medium tracking-wide flex items-center ${
+                      isActive ? 'text-white' : 'text-gray-300 hover:text-white'
+                    }`}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                  >
+                    <span 
+                      className={`w-1.5 h-1.5 rounded-full mr-2 ${
+                        isActive 
+                          ? 'bg-white'
+                          : 'bg-blue-500'
+                      }`}
+                    />
+                    {link.title}
+                  </motion.a>
+                );
+              })}
               <div className="flex items-center space-x-4 pt-2 border-t border-gray-800">
                 {links.map((link, index) => (
                   <motion.a
