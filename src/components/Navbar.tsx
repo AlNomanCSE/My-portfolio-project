@@ -3,10 +3,10 @@
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { Menu } from 'lucide-react';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+// import { useTranslations } from 'next-intl';
 
 export function Navbar() {
-  const t = useTranslations('Home');
+  // const t = useTranslations('Home');
 
   return (
     <nav className="bg-[rgb(var(--color-background))] shadow-md">

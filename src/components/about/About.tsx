@@ -4,6 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { FaGithub, FaCode, FaChartLine } from "react-icons/fa";
+import Image from "next/image"; // Import Next.js Image component
 
 const GitHubActivity = () => {
   return (
@@ -65,9 +66,12 @@ const GitHubActivity = () => {
                     <span className="text-blue-400 font-bold text-lg">profile_stats</span>
                   </div>
                   <div className="flex justify-center">
-                    <img 
+                    <Image 
                       src="https://github-readme-stats.vercel.app/api?username=AlNomanCSE&show_icons=true&theme=dark&hide_border=true&count_private=true&bg_color=0d1117&title_color=58a6ff&text_color=8b949e&icon_color=38d353" 
                       alt="GitHub Stats" 
+                      width={495}
+                      height={195}
+                      unoptimized
                       className="w-full rounded-lg"
                     />
                   </div>
@@ -84,9 +88,12 @@ const GitHubActivity = () => {
                     <span className="text-purple-400 font-bold text-lg">languages</span>
                   </div>
                   <div className="flex justify-center">
-                    <img 
+                    <Image 
                       src="https://github-readme-stats.vercel.app/api/top-langs/?username=AlNomanCSE&layout=compact&theme=dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&text_color=8b949e" 
                       alt="Top Languages" 
+                      width={350}
+                      height={165}
+                      unoptimized
                       className="w-full rounded-lg"
                     />
                   </div>
@@ -103,9 +110,12 @@ const GitHubActivity = () => {
                     <span className="text-green-400 font-bold text-lg">streak</span>
                   </div>
                   <div className="flex justify-center">
-                    <img 
+                    <Image 
                       src="https://github-readme-streak-stats.herokuapp.com/?user=AlNomanCSE&theme=dark&hide_border=true&background=0d1117&ring=38d353&fire=58a6ff&currStreakLabel=58a6ff" 
                       alt="Contribution Streak" 
+                      width={495}
+                      height={195}
+                      unoptimized
                       className="w-full rounded-lg"
                     />
                   </div>
@@ -125,4 +135,4 @@ const GitHubActivity = () => {
   );
 };
 
-export default GitHubActivity; 
+export default GitHubActivity;
