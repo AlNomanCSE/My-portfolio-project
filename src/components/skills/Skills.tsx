@@ -6,7 +6,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { FaCode, FaDatabase, FaMobile, FaTools } from "react-icons/fa";
 import {
   SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiRedux,
-  SiMongodb, SiPostgresql,
+  SiMongodb, SiPostgresql, SiMysql,
   SiReact as SiReactNative, SiExpo, SiGit, SiDocker,
   SiGo, SiSpring
 } from "react-icons/si";
@@ -31,11 +31,11 @@ const skillCategories = [
     icon: <FaDatabase className="text-green-400" />,
     description: "Building robust server-side applications and APIs",
     skills: [
-
       { name: "Spring Boot", icon: <SiSpring className="text-[#6DB33F]" /> },
       { name: "Go (Learning)", icon: <SiGo className="text-[#00ADD8]" />, isLearning: true },
       { name: "MongoDB", icon: <SiMongodb className="text-[#47A248]" /> },
       { name: "PostgreSQL", icon: <SiPostgresql className="text-[#4169E1]" /> },
+      { name: "MySQL", icon: <SiMysql className="text-[#4479A1]" /> }
     ]
   },
   {
@@ -55,9 +55,7 @@ const skillCategories = [
     description: "Essential tools and technologies for development",
     skills: [
       { name: "Git", icon: <SiGit className="text-[#F05032]" /> },
-      { name: "Docker", icon: <SiDocker className="text-[#2496ED]" /> },
-      // { name: "AWS", icon: <SiAmazon className="text-[#FF9900]" /> },
-      // { name: "Firebase", icon: <SiFirebase className="text-[#FFCA28]" /> }
+      { name: "Docker", icon: <SiDocker className="text-[#2496ED]" /> }
     ]
   }
 ];
@@ -74,7 +72,7 @@ const Skills = () => {
         <div className="absolute top-0 left-0 w-full h-full">
           <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full mix-blend-multiply filter blur-3xl animate-blob shadow-[0_0_50px_rgba(59,130,246,0.3)]"></div>
           <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-purple-500/10 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000 shadow-[0_0_50px_rgba(168,85,247,0.3)]"></div>
-          <div className="absolute bottom-1/4 left-1/3 w-64 h-64 bg-green-500/10 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000 shadow-[0_0_50px_rgba(34,197,94,0.3)]"></div>
+          <div className="absolute bottom-1/4 left-1/3 w-64 h-64 bg-green-500/10 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000 shadow-[0_0_50px_rgba(34,197 océ,94,0.3)]"></div>
         </div>
       </div>
 
@@ -176,4 +174,4 @@ const Skills = () => {
   );
 };
 
-export default Skills; 
+export default Skills;
