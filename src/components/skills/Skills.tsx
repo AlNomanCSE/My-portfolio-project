@@ -8,7 +8,10 @@ import {
   SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiRedux,
   SiMongodb, SiPostgresql, SiMysql,
   SiReact as SiReactNative, SiExpo, SiGit, SiDocker,
-  SiGo, SiSpring
+  SiSpring,
+  SiNodedotjs,
+  SiExpress,
+  SiLaravel
 } from "react-icons/si";
 
 const skillCategories = [
@@ -31,8 +34,11 @@ const skillCategories = [
     icon: <FaDatabase className="text-green-400" />,
     description: "Building robust server-side applications and APIs",
     skills: [
+      { name: "Node.js", icon: <SiNodedotjs className="text-[#339933]" /> },
+      { name: "Express.js", icon: <SiExpress className="text-white" /> },
+      { name: "Laravel", icon: <SiLaravel className="text-[#FF2D20]" />, isLearning: true },
       { name: "Spring Boot", icon: <SiSpring className="text-[#6DB33F]" /> },
-      { name: "Go (Learning)", icon: <SiGo className="text-[#00ADD8]" />, isLearning: true },
+      // { name: "Go (Learning)", icon: <SiGo className="text-[#00ADD8]" />},
       { name: "MongoDB", icon: <SiMongodb className="text-[#47A248]" /> },
       { name: "PostgreSQL", icon: <SiPostgresql className="text-[#4169E1]" /> },
       { name: "MySQL", icon: <SiMysql className="text-[#4479A1]" /> }

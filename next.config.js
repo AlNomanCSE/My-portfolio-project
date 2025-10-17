@@ -1,13 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**',
+        hostname: 'github-readme-stats.vercel.app',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'github-readme-streak-stats.herokuapp.com',
+        pathname: '/**',
       },
     ],
   },
-}
+};
 
-export default nextConfig 
+export default nextConfig;

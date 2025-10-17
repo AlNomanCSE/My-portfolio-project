@@ -4,13 +4,27 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { FaBuilding, FaMapMarkerAlt, FaCode, FaArrowRight } from "react-icons/fa";
-import { 
-  SiReact, SiNextdotjs, SiTypescript, 
+import {
+  SiReact, SiNextdotjs, SiTypescript,
   SiNodedotjs, SiExpress, SiMongodb, SiGraphql, SiJavascript,
   SiReact as SiReactNative
 } from "react-icons/si";
 
 const experiences = [
+  {
+    company: "European IT Institute",
+    position: "MERN Stack Instructor",
+    period: "September 2025 - Now",
+    type: "Dhaka, Bangladesh",
+    description: "Designed and delivered a comprehensive MERN stack course, mentoring students on full-stack web development from beginner to intermediate levels.",
+    responsibilities: [
+      "Developed a 36-class curriculum covering JavaScript, Node.js, Express.js, MongoDB, and React.js",
+      "Mentored students on REST API development, JWT-based authentication, and deployment strategies",
+      "Conducted hands-on projects, including to-do lists and blog applications, to reinforce learning",
+      "Utilized tools like VS Code, Postman, and MongoDB Compass for practical training"
+    ],
+    technologies: ["JavaScript", "Node.js", "Express", "MongoDB", "React", "REST API", "Curriculum Design", "Authentication"]
+  },
   {
     company: "OutNet",
     position: "Web Developer (Intern)",
@@ -52,13 +66,13 @@ const Experience = () => {
           <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-pink-500/10 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000 shadow-[0_0_50px_rgba(236,72,153,0.3)]"></div>
         </div>
       </div>
-      
+
       <div className="container mx-auto px-4 relative z-10">
-        <SectionHeading 
+        <SectionHeading
           title="Work Experience"
           subtitle="My professional journey and contributions"
         />
-        
+
         <div className="max-w-4xl mx-auto mt-12">
           {experiences.map((exp, index) => (
             <motion.div
@@ -83,10 +97,10 @@ const Experience = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Right column - Content */}
                 <div className="md:w-3/4">
-                  <div 
+                  <div
                     className={`bg-gray-900/80 backdrop-blur-sm rounded-xl border border-gray-800/50 p-6 shadow-xl hover:shadow-2xl transition-all duration-300 ${activeIndex === index ? 'border-indigo-500/50 shadow-[0_0_15px_rgba(99,102,241,0.3)]' : ''}`}
                     onClick={() => setActiveIndex(activeIndex === index ? null : index)}
                   >
@@ -94,9 +108,9 @@ const Experience = () => {
                       <h3 className="text-xl font-bold text-white">{exp.company}</h3>
                       <p className="text-gray-400">{exp.position}</p>
                     </div>
-                    
+
                     <p className="text-gray-300 mb-4">{exp.description}</p>
-                    
+
                     <AnimatePresence>
                       {activeIndex === index && (
                         <motion.div
@@ -123,7 +137,7 @@ const Experience = () => {
                         </motion.div>
                       )}
                     </AnimatePresence>
-                    
+
                     <div className="flex flex-wrap gap-2">
                       {exp.technologies.map((tech, techIndex) => {
                         // Map technology names to their corresponding icons
@@ -166,16 +180,16 @@ const Experience = () => {
                         );
                       })}
                     </div>
-                    
+
                     <div className="mt-4 text-right">
-                      <button 
+                      <button
                         className="text-indigo-400 text-sm hover:text-indigo-300 transition-colors flex items-center justify-end ml-auto"
                         onClick={(e) => {
                           e.stopPropagation();
                           setActiveIndex(activeIndex === index ? null : index);
                         }}
                       >
-                        {activeIndex === index ? "Show Less" : "Show More"} 
+                        {activeIndex === index ? "Show Less" : "Show More"}
                         <FaArrowRight className={`ml-1 transition-transform ${activeIndex === index ? 'rotate-90' : ''}`} />
                       </button>
                     </div>
