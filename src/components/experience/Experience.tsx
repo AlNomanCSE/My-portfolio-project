@@ -3,18 +3,51 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { FaBuilding, FaMapMarkerAlt, FaCode, FaArrowRight } from "react-icons/fa";
+import { FaBuilding, FaMapMarkerAlt, FaCode, FaArrowRight, FaChartLine, FaSitemap, FaUsers } from "react-icons/fa";
 import {
   SiReact, SiNextdotjs, SiTypescript,
   SiNodedotjs, SiExpress, SiMongodb, SiGraphql, SiJavascript,
-  SiReact as SiReactNative
+  SiReact as SiReactNative, SiLaravel
 } from "react-icons/si";
+
+const coreCompetencies = [
+  {
+    title: "Product Leadership",
+    icon: <FaChartLine className="text-3xl text-indigo-400 mb-4" />,
+    items: ["Roadmap & Prioritization", "Stakeholder Management", "Strategic Decision Making"]
+  },
+  {
+    title: "Technical Architecture",
+    icon: <FaSitemap className="text-3xl text-pink-400 mb-4" />,
+    items: ["Full-Stack Engineering", "API Design (REST/Microservices)", "System Scalability"]
+  },
+  {
+    title: "Management & Ops",
+    icon: <FaUsers className="text-3xl text-purple-400 mb-4" />,
+    items: ["Agile Project Management (OpenProject)", "Team Leadership", "HR Operations"]
+  }
+];
 
 const experiences = [
   {
+    company: "Innovative Skills BD",
+    position: "Software Developer & Product Manager",
+    period: "Dec 2025 – Present",
+    type: "Dhaka, Bangladesh",
+    description: "Leading product strategy and engineering for EdTech features while managing team workflows and operations.",
+    responsibilities: [
+      "Project Management: Orchestrating team workflows using OpenProject, managing task backlogs, Gantt charts, and resource allocation to ensure on-time delivery of educational modules.",
+      "Product Strategy: Leading the lifecycle of EdTech features; translated stakeholder needs into technical requirements, resulting in a 20% improvement in user retention.",
+      "Engineering: Developing scalable backend systems using Laravel and Node.js to support thousands of concurrent students for live classes.",
+      "HR & Operations: Managing recruitment cycles for the technical team and implementing internal protocols to improve cross-departmental collaboration.",
+      "Technical Training: Conducting regular classes to upskill students and internal team members on modern development frameworks."
+    ],
+    technologies: ["Laravel", "Node.js", "OpenProject", "Product Management", "EdTech"]
+  },
+  {
     company: "European IT Institute",
     position: "MERN Stack Instructor",
-    period: "September 2025 - Now",
+    period: "September 2025 - November 2025",
     type: "Dhaka, Bangladesh",
     description: "Designed and delivered a comprehensive MERN stack course, mentoring students on full-stack web development from beginner to intermediate levels.",
     responsibilities: [
@@ -72,6 +105,32 @@ const Experience = () => {
           title="Work Experience"
           subtitle="My professional journey and contributions"
         />
+
+        {/* Core Competencies Section */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 max-w-6xl mx-auto mt-12">
+          {coreCompetencies.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="bg-gray-900/50 p-6 rounded-xl border border-gray-800/50 hover:border-indigo-500/30 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/10"
+            >
+              <div className="flex flex-col items-center text-center">
+                {item.icon}
+                <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
+                <ul className="text-gray-400 text-sm space-y-2 w-full">
+                  {item.items.map((skill, i) => (
+                    <li key={i} className="flex items-center justify-center">
+                      <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full mr-2"></span>
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          ))}
+        </div>
 
         <div className="max-w-4xl mx-auto mt-12">
           {experiences.map((exp, index) => (
@@ -161,6 +220,8 @@ const Experience = () => {
                               return <SiJavascript className="text-[#F7DF1E]" />;
                             case 'react native':
                               return <SiReactNative className="text-[#61DAFB]" />;
+                            case 'laravel':
+                              return <SiLaravel className="text-[#FF2D20]" />;
                             default:
                               return <FaCode className="text-indigo-400" />;
                           }

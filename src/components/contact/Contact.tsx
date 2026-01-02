@@ -17,13 +17,13 @@ const Contact = () => {
           <div className="absolute bottom-1/4 left-1/3 w-64 h-64 bg-pink-500/10 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000 shadow-[0_0_50px_rgba(236,72,153,0.3)]"></div>
         </div>
       </div>
-      
+
       <div className="container mx-auto px-4 relative z-10">
-        <SectionHeading 
+        <SectionHeading
           title="Let&apos;s Connect"
           subtitle="I&apos;m always excited to discuss new projects, creative ideas, or opportunities to be part of your vision"
         />
-        
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -33,11 +33,11 @@ const Contact = () => {
           <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
             Get In Touch
           </h3>
-          
+
           <p className="text-gray-300 mb-8">
             The best way to reach me is directly through email or WhatsApp. I&apos;ll get back to you as soon as possible!
           </p>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8">
             <motion.a
               href="mailto:abdullahalnomancse@gmail.com"
@@ -54,9 +54,9 @@ const Contact = () => {
               </div>
               <FaArrowRight className="text-blue-400 opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-2 transition-all ml-2 sm:ml-3" />
             </motion.a>
-            
+
             <motion.a
-              href="https://wa.me/8801883217001"
+              href="https://wa.me/8801771810475"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center p-3 sm:p-4 bg-gray-800/50 border border-gray-700 rounded-lg hover:bg-gray-800/70 transition-all duration-300 group"
@@ -68,12 +68,12 @@ const Contact = () => {
               </div>
               <div className="flex-1 min-w-0">
                 <h4 className="font-medium text-white text-sm sm:text-base">WhatsApp Me</h4>
-                <p className="text-gray-400 text-xs sm:text-sm truncate">+880 1883-217001</p>
+                <p className="text-gray-400 text-xs sm:text-sm truncate">+880 1771-810475</p>
               </div>
               <FaArrowRight className="text-green-400 opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-2 transition-all ml-2 sm:ml-3" />
             </motion.a>
           </div>
-          
+
           <div className="border-t border-gray-800 pt-6">
             <h4 className="text-lg font-medium text-white mb-4">Connect on Social Media</h4>
             <div className="flex flex-wrap gap-4">
@@ -88,7 +88,7 @@ const Contact = () => {
                 <FaLinkedin className="text-blue-400 mr-2" />
                 <span className="text-gray-300">LinkedIn</span>
               </motion.a>
-              
+
               <motion.a
                 href="https://github.com/AlNomanCSE"
                 target="_blank"

@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import VisitorCounter from '@/components/VisitorCounter';
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,7 +32,7 @@ export default function RootLayout({
         <div className="fixed inset-0">
           {/* Background gradient */}
           <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-950 to-blue-900" />
-          
+
           {/* Animated background shapes */}
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-900 rounded-full mix-blend-soft-light filter blur-xl opacity-70 animate-blob" />
@@ -42,11 +42,8 @@ export default function RootLayout({
         </div>
 
         <div className="relative z-10 flex flex-col min-h-screen">
-          {/* Visitor Counter at the top of the page */}
-          <div className="absolute top-4 right-4 z-50">
-            <VisitorCounter />
-          </div>
-          
+
+
           <Header />
           <main className="flex-1">
             {children}

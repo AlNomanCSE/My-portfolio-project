@@ -11,37 +11,43 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 
+import { usePathname, useRouter } from "next/navigation";
+
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('about');
+  const pathname = usePathname();
+  const router = useRouter();
 
   // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
-      
-      // Update active section based on scroll position
-      const sections = ['about', 'skills', 'experience', 'projects', 'contact'];
-      const currentSection = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          const offset = 200; // Increased offset for better detection
-          const isInView = rect.top <= offset && rect.bottom >= offset;
-          return isInView;
+
+      // Only check sections if we are on the home page
+      if (pathname === '/') {
+        const sections = ['about', 'skills', 'experience', 'projects', 'contact'];
+        const currentSection = sections.find(section => {
+          const element = document.getElementById(section);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            const offset = 200; // Increased offset for better detection
+            const isInView = rect.top <= offset && rect.bottom >= offset;
+            return isInView;
+          }
+          return false;
+        });
+
+        if (currentSection) {
+          setActiveSection(currentSection);
         }
-        return false;
-      });
-      
-      if (currentSection) {
-        setActiveSection(currentSection);
       }
     };
-    
+
     // Initial check for active section
     handleScroll();
-    
+
     // Add throttling to prevent too many updates
     let ticking = false;
     const scrollHandler = () => {
@@ -53,53 +59,44 @@ export function Header() {
         ticking = true;
       }
     };
-    
+
     window.addEventListener('scroll', scrollHandler);
     return () => window.removeEventListener('scroll', scrollHandler);
-  }, []);
+  }, [pathname]);
 
-  // Handle smooth scrolling
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+  // Handle navigation click
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setMobileMenuOpen(false);
-    
-    const element = document.getElementById(id);
-    if (element) {
-      const headerOffset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-      
-      // Update active section immediately
-      setActiveSection(id);
-      
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
-    }
-  };
 
-  const handleMobileNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
-    setMobileMenuOpen(false);
-    
-    // Add a small delay to allow the mobile menu to close smoothly
-    setTimeout(() => {
-      const element = document.getElementById(id);
-      if (element) {
-        const headerOffset = 80;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-        
-        // Update active section immediately
-        setActiveSection(id);
-        
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth"
-        });
+    if (href.startsWith('#')) {
+      const id = href.substring(1);
+
+      if (pathname === '/') {
+        // We are on home page, smooth scroll
+        const element = document.getElementById(id);
+        if (element) {
+          const headerOffset = 80;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+          setActiveSection(id);
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
+        }
+      } else {
+        // We are on another page, navigate to home with hash
+        router.push('/' + href);
       }
-    }, 300);
+    } else {
+      // It's a page navigation (e.g. /projects)
+      if (pathname !== href) {
+        router.push(href);
+      }
+    }
   };
 
   const links = [
@@ -124,24 +121,23 @@ export function Header() {
     { title: "About Me", href: "#about" },
     { title: "Skills", href: "#skills" },
     { title: "Experience", href: "#experience" },
-    { title: "Projects", href: "#projects" },
+    { title: "Projects", href: "/projects" },
     { title: "Contact", href: "#contact" },
   ];
 
   return (
-    <motion.header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? "bg-gray-900/80 backdrop-blur-md shadow-lg border-b border-gray-800/50" 
-          : "bg-transparent"
-      }`}
+    <motion.header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+        ? "bg-gray-900/80 backdrop-blur-md shadow-lg border-b border-gray-800/50"
+        : "bg-transparent"
+        }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         {/* Logo */}
-        <motion.div 
+        <motion.div
           className="flex items-center"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -166,7 +162,7 @@ export function Header() {
                 <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full"></div>
               </div>
               <div className="mt-1">
-                <span className="text-xs font-medium text-gray-400 tracking-wider uppercase">Full Stack Developer</span>
+                <span className="text-xs font-medium text-gray-400 tracking-wider uppercase">SW & Product Manager</span>
               </div>
             </div>
           </Link>
@@ -180,10 +176,9 @@ export function Header() {
               <motion.a
                 key={link.title}
                 href={link.href}
-                onClick={(e) => scrollToSection(e, link.href.substring(1))}
-                className={`relative group font-medium tracking-wide transition-colors ${
-                  isActive ? 'text-white' : 'text-gray-300 hover:text-white'
-                }`}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className={`relative group font-medium tracking-wide transition-colors ${isActive ? 'text-white' : 'text-gray-300 hover:text-white'
+                  }`}
                 whileHover={{ y: -2 }}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -192,10 +187,10 @@ export function Header() {
                 {link.title}
                 {!isActive && (
                   <>
-                    <span 
+                    <span
                       className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 w-0 group-hover:w-full"
                     />
-                    <span 
+                    <span
                       className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300 delay-75 w-0 group-hover:w-full"
                     />
                   </>
@@ -256,20 +251,18 @@ export function Header() {
                   <motion.a
                     key={link.title}
                     href={link.href}
-                    onClick={(e) => handleMobileNavClick(e, link.href.substring(1))}
-                    className={`py-2 transition-colors font-medium tracking-wide flex items-center ${
-                      isActive ? 'text-white' : 'text-gray-300 hover:text-white'
-                    }`}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    className={`py-2 transition-colors font-medium tracking-wide flex items-center ${isActive ? 'text-white' : 'text-gray-300 hover:text-white'
+                      }`}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
                   >
-                    <span 
-                      className={`w-1.5 h-1.5 rounded-full mr-2 ${
-                        isActive 
-                          ? 'bg-white'
-                          : 'bg-blue-500'
-                      }`}
+                    <span
+                      className={`w-1.5 h-1.5 rounded-full mr-2 ${isActive
+                        ? 'bg-white'
+                        : 'bg-blue-500'
+                        }`}
                     />
                     {link.title}
                   </motion.a>
