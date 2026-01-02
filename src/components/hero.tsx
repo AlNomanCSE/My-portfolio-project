@@ -2,7 +2,7 @@
 
 import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 import { motion } from "framer-motion";
-import Image from "next/image";
+
 import { FaGithub, FaLinkedin, FaTwitter, FaFileDownload } from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
 

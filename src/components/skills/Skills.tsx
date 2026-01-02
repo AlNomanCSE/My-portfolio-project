@@ -7,7 +7,7 @@ import { FaTasks } from "react-icons/fa";
 import {
   SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiRedux,
   SiMongodb, SiPostgresql, SiMysql,
-  SiReact as SiReactNative, SiExpo, SiGit, SiDocker,
+  SiGit, SiDocker,
   SiSpring,
   SiNodedotjs,
   SiExpress,
